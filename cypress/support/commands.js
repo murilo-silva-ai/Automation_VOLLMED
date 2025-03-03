@@ -10,7 +10,15 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('login', (email, password) => {
+    cy.session([email, password], () => {
+        cy.visit('/login')
+        cy.get('[data-test="inputLoginEmail"]').type('email.teste@gmail.com')
+        cy.get('[data-test="inputLoginSenha"]').type('teste123')
+        cy.get('[data-test="botaoTeste"]').click()
+        cy.contains('Button', 'Cadastrar especialista', { timeout: 10000 })
+    })
+})
 //
 //
 // -- This is a child command --

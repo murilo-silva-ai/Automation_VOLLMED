@@ -20,7 +20,6 @@ describe("Realiza cadatro com sucesso", () => {
             cy.get('[data-test="inputSenha"]').type('teste123')
             cy.get('[data-test="inputSenhaVerificada"]').type('teste123')
             cy.contains('button', 'Avançar').click()
-
             cy.get('[data-test="inputTelefone"]').type('44991398823')
             cy.get('[data-test="inputCEP"]').type('87080590')
             cy.get('[data-test="inputRua"]').type('Uziro Zarur')
@@ -28,8 +27,13 @@ describe("Realiza cadatro com sucesso", () => {
             cy.get('[data-test="inputComplemento"]').type('Benner sistemas de saúde')
             cy.get('[data-test="inputEstado"]').type('Paraná')
             cy.contains('button', 'Cadastrar').click()
-
             cy.location('pathname').should('eq', '/login')
+        })
+    })
+
+    context('Faz Login com usuário válido', () => {
+        it.only("Realiza login com sucesso", () => {
+            cy.login('email.teste@gmail.com', 'teste123')
         })
     })
 })
